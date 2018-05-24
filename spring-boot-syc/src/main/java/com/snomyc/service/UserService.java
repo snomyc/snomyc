@@ -1,8 +1,7 @@
-package com.neo.service;
-
-import com.neo.entity.User;
+package com.snomyc.service;
 
 import java.util.List;
+import com.snomyc.entity.User;
 
 public interface UserService {
 

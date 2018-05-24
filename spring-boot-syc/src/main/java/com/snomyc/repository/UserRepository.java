@@ -1,7 +1,8 @@
-package com.neo.repository;
+package com.snomyc.repository;
 
-import com.neo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.snomyc.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

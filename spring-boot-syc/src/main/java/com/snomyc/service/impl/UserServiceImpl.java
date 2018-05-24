@@ -1,12 +1,12 @@
-package com.neo.service.impl;
+package com.snomyc.service.impl;
 
-import com.neo.entity.User;
-import com.neo.repository.UserRepository;
-import com.neo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import com.snomyc.entity.User;
+import com.snomyc.repository.UserRepository;
+import com.snomyc.service.UserService;
+
 import java.util.List;
 
 @Service
