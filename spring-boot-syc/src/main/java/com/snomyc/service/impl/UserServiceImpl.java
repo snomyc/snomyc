@@ -1,44 +1,29 @@
 package com.snomyc.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
-
+import com.snomyc.base.service.BaseServiceImpl;
 import com.snomyc.entity.User;
 import com.snomyc.repository.UserRepository;
 import com.snomyc.service.UserService;
 
-import java.util.List;
-
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl extends BaseServiceImpl<User, String> implements UserService{
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public List<User> getUserList() {
-        return userRepository.findAll();
-    }
-
-    @Override
-    public User findUserById(long id) {
+    public User findUserById(String id) {
         return userRepository.findById(id);
     }
 
-    @Override
-    public void save(User user) {
-        userRepository.save(user);
-    }
+	@Override
+	public PagingAndSortingRepository<User, String> getDao() {
+		return userRepository;
+	}
 
-    @Override
-    public void edit(User user) {
-        userRepository.save(user);
-    }
-
-    @Override
-    public void delete(long id) {
-        userRepository.delete(id);
-    }
 }
 
 

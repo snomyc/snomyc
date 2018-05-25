@@ -21,7 +21,7 @@ public class UserController {
 
 	@RequestMapping("/list")
 	public String list(Model model) {
-		List<User> users = userService.getUserList();
+		List<User> users = userService.findAll();
 		model.addAttribute("users", users);
 		return "user/list";
 	}
@@ -38,20 +38,20 @@ public class UserController {
 	}
 
 	@RequestMapping("/toEdit")
-	public String toEdit(Model model, Long id) {
-		User user = userService.findUserById(id);
+	public String toEdit(Model model, String id) {
+		User user = userService.getById(id);
 		model.addAttribute("user", user);
 		return "user/userEdit";
 	}
 
 	@RequestMapping("/edit")
 	public String edit(User user) {
-		userService.edit(user);
+		userService.save(user);
 		return "redirect:/list";
 	}
 
 	@RequestMapping("/delete")
-	public String delete(Long id) {
+	public String delete(String id) {
 		userService.delete(id);
 		return "redirect:/list";
 	}
