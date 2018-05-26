@@ -1,3 +1,4 @@
+package com.snomyc.base.filter;
 //package com.snomyc.sys.filter;
 //
 //import java.io.IOException;

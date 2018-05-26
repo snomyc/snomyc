@@ -1,3 +1,4 @@
+package com.snomyc.base.config;
 //package com.snomyc.sys.config;
 //
 //import java.lang.reflect.Method;
