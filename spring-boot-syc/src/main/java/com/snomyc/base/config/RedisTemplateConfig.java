@@ -21,7 +21,13 @@ package com.snomyc.base.config;
 //
 //@Configuration
 //@EnableCaching
-//public class RedisConfig extends CachingConfigurerSupport{
+
+/****
+ * redisTemplate 使用
+ * @Autowired
+	private RedisTemplate redisTemplate;
+**/
+//public class RedisTemplateConfig extends CachingConfigurerSupport{
 //	
 //	@Bean
 //	public KeyGenerator keyGenerator() {

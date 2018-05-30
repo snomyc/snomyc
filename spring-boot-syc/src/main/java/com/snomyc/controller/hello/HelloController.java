@@ -1,4 +1,4 @@
-package com.snomyc.user.controller;
+package com.snomyc.controller.hello;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;

@@ -1,12 +1,15 @@
-package com.snomyc.user.request;
+package com.snomyc.controller.user.request;
 
 
 import com.snomyc.base.domain.BaseRequest;
 import io.swagger.annotations.ApiModelProperty;
 
-public class UserAddRequest extends BaseRequest {
+public class UserEditRequest extends BaseRequest {
 	private static final long serialVersionUID = 1L;
 
+	@ApiModelProperty(name = "id", value = "设备号", required = true)
+	private String id; //user id
+	
 	@ApiModelProperty(name = "userName", value = "用户名", required = true)
 	private String userName;
 	
@@ -15,6 +18,14 @@ public class UserAddRequest extends BaseRequest {
 	
 	@ApiModelProperty(name = "age", value = "年龄", required = true)
 	private int age;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getUserName() {
 		return userName;

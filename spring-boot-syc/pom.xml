@@ -53,6 +53,12 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         
+        <!-- spring aop切面 -->
+        <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-aop</artifactId>  
+		</dependency> 
+        
         <!-- redis -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>  

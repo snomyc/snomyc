@@ -1,5 +1,4 @@
-package com.snomyc.base.filter;
-//package com.snomyc.sys.filter;
+//package com.snomyc.base.filter;
 //
 //import java.io.IOException;
 //
