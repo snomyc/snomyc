@@ -1,9 +1,10 @@
-package com.snomyc.base.security;
+package com.snomyc.base.aspect;
 
 import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,33 +25,25 @@ import com.snomyc.base.security.manager.TokenManager;
 @Component
 public class SecurityAspect {
 
-    private static final String DEFAULT_TOKEN_NAME = "accessToken";
-
     @Autowired
     private TokenManager tokenManager;
-    private String tokenName;
+    private String tokenName = "accessToken";
 
     public void setTokenManager(TokenManager tokenManager) {
         this.tokenManager = tokenManager;
     }
-
-    public void setTokenName(String tokenName) {
-        if (StringUtils.isEmpty(tokenName)) {
-            tokenName = DEFAULT_TOKEN_NAME;
-        }
-        this.tokenName = tokenName;
-    }
-
-    public Object execute(ProceedingJoinPoint pjp) throws Throwable {
-        // 从切点上获取目标方法
+    
+    //通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为
+    @Around("execution(* com.snomyc.controller..*.*(..))") //拦截com.snomyc包及子包下面的所有类中的所有方法，返回类型任意，方法参数任意 
+    public Object around(ProceedingJoinPoint pjp) throws Throwable{
+    	// 从切点上获取目标方法
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
-
 
         String uri = WebContext.getRequest().getRequestURI().replaceAll(WebContext.getRequest().getContextPath(), "");
 
         // 若目标方法忽略了安全性检查或不为ajax请求，则直接调用目标方法
-        if (method.isAnnotationPresent(IgnoreSecurity.class)  || (!StringUtils.startsWith(uri, "/wxapi/") && !StringUtils.startsWith(uri, "/api/"))) {
+        if (method.isAnnotationPresent(IgnoreSecurity.class)  || (!StringUtils.startsWith(uri, "/api/"))) {
             return pjp.proceed();
         }
         // 从 request header 中获取当前 token
@@ -63,4 +56,5 @@ public class SecurityAspect {
         // 调用目标方法
         return pjp.proceed();
     }
+
 }

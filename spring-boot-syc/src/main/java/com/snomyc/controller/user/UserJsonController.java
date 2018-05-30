@@ -22,7 +22,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 @Api(value = "返回json格式接口", tags = "返回json格式接口")
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("/api/user")
 public class UserJsonController {
 	
 	@Autowired

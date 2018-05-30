@@ -1,4 +1,4 @@
-package com.snomyc.base.security;
+package com.snomyc.base.aspect;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
