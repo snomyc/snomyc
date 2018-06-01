@@ -1,4 +1,4 @@
-package com.snomyc.base.config;
+package com.snomyc.base.redis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
