@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-@Api(value = "返回json格式接口", tags = "返回json格式接口")
+@Api(value = "用户接口", tags = "用户接口")
 @RestController
 @RequestMapping("/api/user")
 public class UserJsonController {

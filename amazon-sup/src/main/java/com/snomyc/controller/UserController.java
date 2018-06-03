@@ -6,8 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.snomyc.sys.user.bean.User;
 import com.snomyc.sys.user.service.UserService;
+
+import springfox.documentation.annotations.ApiIgnore;
+
 import java.util.List;
 
+@ApiIgnore
 @Controller
 public class UserController {
 
