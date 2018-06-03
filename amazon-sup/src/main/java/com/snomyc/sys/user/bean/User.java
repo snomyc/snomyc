@@ -9,13 +9,12 @@ public class User extends BaseEntity{
     
 	private static final long serialVersionUID = 1L;
 	
-	@Column(nullable = false, unique = true)
+	@Column(unique = true,nullable = false,length=50)
     private String userName;
 	
-    @Column(nullable = false)
+	@Column(nullable = false, unique = true,length=50)
     private String password;
-    
-    @Column(nullable = false)
+	
     private int age;
 
     public String getUserName() {

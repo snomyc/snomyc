@@ -1,4 +1,4 @@
-package com.snomyc.controller.user;
+package com.snomyc.api.user;
 
 import java.util.List;
 
@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.snomyc.api.user.request.UserAddRequest;
+import com.snomyc.api.user.request.UserEditRequest;
 import com.snomyc.base.domain.ResponseConstant;
 import com.snomyc.base.domain.ResponseEntity;
 import com.snomyc.base.redis.JedisPoolUtil;
-import com.snomyc.controller.user.request.UserAddRequest;
-import com.snomyc.controller.user.request.UserEditRequest;
 import com.snomyc.sys.user.bean.User;
 import com.snomyc.sys.user.service.UserService;
 import io.swagger.annotations.Api;

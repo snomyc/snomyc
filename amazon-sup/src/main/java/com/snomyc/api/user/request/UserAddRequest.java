@@ -1,4 +1,4 @@
-package com.snomyc.controller.user.request;
+package com.snomyc.api.user.request;
 
 
 import com.snomyc.base.domain.BaseRequest;

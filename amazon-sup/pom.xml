@@ -122,13 +122,19 @@
 			<version>${httpclient.version}</version>
 		</dependency>
 		<!-- commons end  -->
-		
 
 		<!-- fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
+		</dependency>
+        
+        <!-- 抓取网站代码 -->
+		<dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.8.1</version>
 		</dependency>
         
         <!-- 热启动 -->
