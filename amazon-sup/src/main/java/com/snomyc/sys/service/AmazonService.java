@@ -1,4 +1,4 @@
-package com.snomyc.sys.amazon.service;
+package com.snomyc.sys.service;
 
 /**
  * @author snomyc

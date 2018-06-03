@@ -14,8 +14,9 @@ import com.snomyc.api.user.request.UserEditRequest;
 import com.snomyc.base.domain.ResponseConstant;
 import com.snomyc.base.domain.ResponseEntity;
 import com.snomyc.base.redis.JedisPoolUtil;
-import com.snomyc.sys.user.bean.User;
-import com.snomyc.sys.user.service.UserService;
+import com.snomyc.sys.bean.User;
+import com.snomyc.sys.service.UserService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,7 +28,7 @@ import redis.clients.jedis.JedisPool;
 public class UserJsonController {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	@Autowired
 	private JedisPool jedisPool;

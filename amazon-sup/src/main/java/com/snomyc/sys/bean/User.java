@@ -1,4 +1,4 @@
-package com.snomyc.sys.user.bean;
+package com.snomyc.sys.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

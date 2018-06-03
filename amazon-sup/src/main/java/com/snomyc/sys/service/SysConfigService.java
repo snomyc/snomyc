@@ -1,7 +1,7 @@
-package com.snomyc.sys.config.service;
+package com.snomyc.sys.service;
 
 import com.snomyc.base.service.BaseService;
-import com.snomyc.sys.config.bean.SysConfig;
+import com.snomyc.sys.bean.SysConfig;
 public interface SysConfigService extends BaseService<SysConfig, String>{
 
 }

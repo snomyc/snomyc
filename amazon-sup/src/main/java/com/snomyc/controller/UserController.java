@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.snomyc.sys.user.bean.User;
-import com.snomyc.sys.user.service.UserService;
 
+import com.snomyc.sys.bean.User;
+import com.snomyc.sys.service.UserService;
 import springfox.documentation.annotations.ApiIgnore;
-
 import java.util.List;
 
 @ApiIgnore
@@ -16,7 +15,7 @@ import java.util.List;
 public class UserController {
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	@RequestMapping("/")
 	public String index() {

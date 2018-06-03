@@ -1,12 +1,12 @@
-package com.snomyc.sys.user.service.impl;
+package com.snomyc.sys.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 import com.snomyc.base.service.BaseServiceImpl;
-import com.snomyc.sys.user.bean.User;
-import com.snomyc.sys.user.dao.UserDao;
-import com.snomyc.sys.user.service.UserService;
+import com.snomyc.sys.bean.User;
+import com.snomyc.sys.dao.UserDao;
+import com.snomyc.sys.service.UserService;
 
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User, String> implements UserService{
