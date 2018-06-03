@@ -136,6 +136,21 @@
 		    <artifactId>jsoup</artifactId>
 		    <version>1.8.1</version>
 		</dependency>
+		
+		<!-- poi start -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.9</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		    <version>3.9</version>
+		</dependency>
+        <!-- poi end -->
+        
         
         <!-- 热启动 -->
         <dependency>

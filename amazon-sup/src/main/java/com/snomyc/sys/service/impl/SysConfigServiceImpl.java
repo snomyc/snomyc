@@ -18,6 +18,11 @@ public class SysConfigServiceImpl extends BaseServiceImpl<SysConfig, String> imp
 		return sysConfigDao;
 	}
 
+	@Override
+	public String findParamValByCode(String code) {
+		return sysConfigDao.findParamValByCode(code);
+	}
+
 	
 }
 

@@ -25,7 +25,7 @@ import redis.clients.jedis.JedisPool;
 @Api(value = "用户接口", tags = "用户接口")
 @RestController
 @RequestMapping("/api/user")
-public class UserJsonController {
+public class UserApiController {
 	
 	@Autowired
 	private UserService userService;

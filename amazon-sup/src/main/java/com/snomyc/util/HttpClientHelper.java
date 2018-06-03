@@ -16,6 +16,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
 public class HttpClientHelper {
@@ -158,7 +159,7 @@ public class HttpClientHelper {
 	 */
 	public static String httpGet(String url) {
 		try {
-			HttpClient httpclient = new DefaultHttpClient();
+			HttpClient httpclient = HttpClients.createDefault();
 			HttpGet getMethod = new HttpGet(url);
 			HttpResponse response = httpclient.execute(getMethod);
 			if (response.getStatusLine().getStatusCode() == 200) {
@@ -183,7 +184,7 @@ public class HttpClientHelper {
 	}
 
 	public static String httpPost( String url, Map<String, Object> parameters) throws ClientProtocolException, IOException{
-		HttpClient httpclient = new DefaultHttpClient();
+		HttpClient httpclient = HttpClients.createDefault();
 		HttpPost postMethod = new HttpPost(url);
 		if( parameters != null && parameters.size() != 0 ){
 			postMethod.setEntity(new UrlEncodedFormEntity( mapToList(parameters), "UTF-8"));
@@ -206,7 +207,7 @@ public class HttpClientHelper {
 	}
 	
 	public static String httpPost( String url, String name, String value) throws ClientProtocolException, IOException{
-		HttpClient httpclient = new DefaultHttpClient();
+		HttpClient httpclient = HttpClients.createDefault();
 		HttpPost postMethod = new HttpPost(url);
 		if( StringUtils.isNotBlank(url) && StringUtils.isNotBlank(name) &&  StringUtils.isNotBlank(value)){
 			List<NameValuePair> list = new ArrayList<NameValuePair>();
