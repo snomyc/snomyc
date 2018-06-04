@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -34,6 +35,12 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 
 	@Override
 	public List<AmazonKeyWord> saveListByKeyWordRoot(String keyWordRoot) {
+		
+		List<AmazonKeyWord> list = amazonKeyWordDao.findByKeyWordRoot(keyWordRoot);
+		//如果数据库种存在该记录，那么就不去网站上爬取
+		if(CollectionUtils.isNotEmpty(list)) {
+			return list;
+		}
 		
 		//通过词根 爬取亚马逊搜索接口 获取关键词集合 并入库
 		String searchUrl = sysConfigService.findParamValByCode("AMAZON_SEARCH");
