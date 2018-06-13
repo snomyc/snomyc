@@ -34,14 +34,18 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 	}
 
 	@Override
-	public List<AmazonKeyWord> saveListByKeyWordRoot(String keyWordRoot) {
-		
+	public List<AmazonKeyWord> findByKeyWordRoot(String keyWordRoot) {
 		List<AmazonKeyWord> list = amazonKeyWordDao.findByKeyWordRoot(keyWordRoot);
 		//如果数据库种存在该记录，那么就不去网站上爬取
 		if(CollectionUtils.isNotEmpty(list)) {
 			return list;
 		}
-		
+		this.saveListByKeyWordRoot(keyWordRoot);
+		//通过关键词根词查询关键词集合
+		return amazonKeyWordDao.findByKeyWordRoot(keyWordRoot);
+	}
+	
+	private void saveListByKeyWordRoot(String keyWordRoot) {
 		//通过词根 爬取亚马逊搜索接口 获取关键词集合 并入库
 		String searchUrl = sysConfigService.findParamValByCode("AMAZON_SEARCH");
 		//转义关键词 拼接查询条件
@@ -55,8 +59,6 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 			result = HttpClientHelper.httpGet(url);
 			this.saveByHttpGetResult(keyWordRoot, result);
 		}
-		//通过关键词根词查询关键词集合
-		return amazonKeyWordDao.findByKeyWordRoot(keyWordRoot);
 	}
 	
 	private void saveByHttpGetResult(String keyWordRoot,String result) {
@@ -84,6 +86,14 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 	@Override
 	public List<AmazonKeyWord> findListByKeyWordRoot(String keyWordRoot) {
 		return amazonKeyWordDao.findByKeyWordRoot(keyWordRoot);
+	}
+
+	@Override
+	public void updateKeyWord(String keyWordRoot) {
+		//删除数据库种已存在的关键词词根集合
+		List<AmazonKeyWord> list = amazonKeyWordDao.findByKeyWordRoot(keyWordRoot);
+		amazonKeyWordDao.delete(list);
+		this.saveListByKeyWordRoot(keyWordRoot);
 	}
 
 }

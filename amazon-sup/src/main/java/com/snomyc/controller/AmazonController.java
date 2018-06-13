@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.snomyc.sys.bean.AmazonKeyWord;
 import com.snomyc.sys.service.AmazonKeyWordService;
 import com.snomyc.util.excel.ExcelUtilXSSF;
+
+import springfox.documentation.annotations.ApiIgnore;
+@ApiIgnore
 @Controller
 @RequestMapping("/amazon")
 public class AmazonController {
@@ -58,7 +61,8 @@ public class AmazonController {
 	        out.close();
 		}else {
 			//重定向到列表页面
-			response.sendRedirect("/amazon/list.do");
+			//response.sendRedirect("/amazon/list.do");
+			response.sendRedirect("/swagger-ui.html#");
 		}
 	}
 	

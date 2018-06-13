@@ -17,7 +17,7 @@ public interface AmazonKeyWordService extends BaseService<AmazonKeyWord, String>
 	 * 创建人:snomyc
 	
 	 */
-	public List<AmazonKeyWord> saveListByKeyWordRoot(String keyWordRoot);
+	public List<AmazonKeyWord> findByKeyWordRoot(String keyWordRoot);
 	
 	/**
 	 * @param keyWordRoot
@@ -30,4 +30,6 @@ public interface AmazonKeyWordService extends BaseService<AmazonKeyWord, String>
 	
 	 */
 	public List<AmazonKeyWord> findListByKeyWordRoot(String keyWordRoot);
+	
+	public void updateKeyWord(String keyWordRoot);
 }
