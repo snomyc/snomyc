@@ -5,6 +5,7 @@
     <name>amazon-sup</name>
     <version>0.0.1-SNAPSHOT</version>
     <description>amazon-sup</description>
+    <packaging>war</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -160,11 +161,11 @@
         </dependency>
         
 	    <!-- 打包的时候排查tomcat -->
-	    <!-- <dependency>
+	    <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency> -->
+		</dependency>
         
     </dependencies>
     <build>
