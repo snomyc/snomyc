@@ -62,7 +62,7 @@ public class AmazonController {
 		}else {
 			//重定向到列表页面
 			//response.sendRedirect("/amazon/list.do");
-			response.sendRedirect("/swagger-ui.html#");
+			response.sendRedirect("/amazon-sup/swagger-ui.html#");
 		}
 	}
 	
