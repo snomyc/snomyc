@@ -53,7 +53,7 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 		String result = HttpClientHelper.httpGet(url);
 		this.saveByHttpGetResult(keyWordRoot, result);
 		//通过词根+空格+(a-z)获取关键词集合并入库，去重
-		for (int i = 'a'; i <= 'z'; i++) {
+		for (char i = 'a'; i <= 'z'; i++) {
 			String keyWordRootAdd = keyWordRoot + " "+i;
 			url =  searchUrl + URLEncoder.encode(keyWordRootAdd);
 			result = HttpClientHelper.httpGet(url);
