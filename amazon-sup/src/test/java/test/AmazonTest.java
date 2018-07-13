@@ -27,9 +27,36 @@ public class AmazonTest {
 //			System.out.println(value);
 //		}
 		
+		//通过词根 爬取亚马逊搜索接口 获取关键词集合 并入库
+		String keyWordRoot = "projector screen";
+		String searchUrl = "https://completion.amazon.com/search/complete?method=completion&mkt=1&search-alias=aps&q=";
+		//转义关键词 拼接查询条件
+		String url = searchUrl + URLEncoder.encode(keyWordRoot);
+		String result = HttpClientHelper.httpGet(url);
+		System.out.println(result);
+		//通过词根+空格+(a-z)获取关键词集合并入库，去重
+		int flag = 1;
+		for (char i = 'a'; i <= 'z'; i++) {
+			if(flag == 1) {
+				System.out.println(i);
+				String keyWordRootAdd = keyWordRoot + " "+i;
+				System.out.println(keyWordRootAdd);
+				url =  searchUrl + URLEncoder.encode(keyWordRootAdd);
+				result = HttpClientHelper.httpGet(url);
+				System.out.println(result);
+			}else {
+				break;
+			}
+			flag++;
+			
+		}
+		
 		//打印a-z
 		for(char i='a';i<='z';i++) {  
             System.out.print(i+" ");  
+        }
+		for(char i='a';i<='z';i++) {  
+            System.out.print(i);  
         }  
 	}
 }
