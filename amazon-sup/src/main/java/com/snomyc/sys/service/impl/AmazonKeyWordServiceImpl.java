@@ -97,7 +97,6 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 		amazonKeyWordDao.delete(list);
 		this.saveListByKeyWordRoot(keyWordRoot);
 	}
-
 }
 
 
