@@ -53,7 +53,7 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 		String result = HttpClientHelper.httpGet(url);
 		this.saveByHttpGetResult(keyWordRoot, result);
 		//通过词根+空格+(a-z)获取关键词集合并入库，去重
-		for (int i = 'a'; i <= 'z'; i++) {
+		for (char i = 'a'; i <= 'z'; i++) {
 			String keyWordRootAdd = keyWordRoot + " "+i;
 			url =  searchUrl + URLEncoder.encode(keyWordRootAdd);
 			result = HttpClientHelper.httpGet(url);
@@ -71,13 +71,15 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 				try {
 					String keyWordSecond = (String) it.next();
 					//将关键词入库
-					AmazonKeyWord KeyWord = new AmazonKeyWord();
-					KeyWord.setKeyWordRoot(keyWordRoot);
-					KeyWord.setKeyWordSecond(keyWordSecond);
-					KeyWord.setCreateTime(new Date());
-					amazonKeyWordDao.save(KeyWord);
+					int count = amazonKeyWordDao.countByKeyWordRootAndKeyWordSecond(keyWordRoot, keyWordSecond);
+					if(count == 0) {
+						AmazonKeyWord KeyWord = new AmazonKeyWord();
+						KeyWord.setKeyWordRoot(keyWordRoot);
+						KeyWord.setKeyWordSecond(keyWordSecond);
+						KeyWord.setCreateTime(new Date());
+						amazonKeyWordDao.saveAndFlush(KeyWord);
+					}
 				}catch (Exception e) {
-					//因为keyWordSecond唯一，防止数据库中有该值导致爆粗，故捕获异常
 				}
 			}
 		}

@@ -34,31 +34,19 @@ public class Test2 {
 	    
       //String url = "http://localhost:8080/sharingschool/wxapi/user/appUserlogin";
 	  //String url = "https://t.questyes.com/wxapi/user/getLoginType";
-	  String url = "https://t.sharingschool.com/wxapi/user/getLoginType";
-      Map<String, Object> map = new HashMap<String, Object>();
-	  map.put("validateTime", "2018-05-30");
-      HttpHeaders headers = new HttpHeaders();
-      headers.setContentType(MediaType.valueOf("application/json;UTF-8"));
-      HttpEntity<String> strEntity = new HttpEntity<String>(JSON.toJSONString(map),headers);
-      RestTemplate restTemplate = new RestTemplate();
+//	  String url = "https://t.sharingschool.com/wxapi/user/getLoginType";
+//      Map<String, Object> map = new HashMap<String, Object>();
+//	  map.put("validateTime", "2018-05-30");
+//      HttpHeaders headers = new HttpHeaders();
+//      headers.setContentType(MediaType.valueOf("application/json;UTF-8"));
+//      HttpEntity<String> strEntity = new HttpEntity<String>(JSON.toJSONString(map),headers);
+//      RestTemplate restTemplate = new RestTemplate();
+//      
+//      String result = restTemplate.postForObject(url,strEntity,String.class);
+//      System.out.println(result);
       
-      String result = restTemplate.postForObject(url,strEntity,String.class);
-      System.out.println(result);
-	    
-//        
-//        StringBuilder selSql = new StringBuilder();
-//		selSql.append(" select sf.id,sf.biz_id,sf.create_time as answer_time,stf.create_time as feedbact_time,stf.content from scon_feedback sf ");
-//		selSql.append(" left join scon_text_feedback_detail stf on sf.id = stf.feedback_id");
-//		selSql.append(" where and stf.type = 4 and sf.biz_id in('");
-//		
-//		selSql = selSql.deleteCharAt(selSql.length()-1);
-//		System.out.println(selSql.toString());
-		
-//		long start = System.currentTimeMillis();
-//		Thread.sleep(61000);
-//		long end = System.currentTimeMillis();
-//		System.out.println(((end-start)/1000));
-//		System.out.println(((end-start)%60000 == 0 ? (end-start)/60000 : ((end-start)/60000)+1));
+      String url = "http://localhost:8080/api/amazon/exportUrl";
+      System.out.println(url.substring(0, url.indexOf("/",7)));
 		
 	}
 }

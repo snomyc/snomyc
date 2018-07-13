@@ -3,6 +3,10 @@ package com.snomyc.api.amazon;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,6 +56,29 @@ public class AmazonApiController {
 		try {
 			amazonKeyWordService.updateKeyWord(keyWordRoot);
 			responseEntity.success();
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+	
+	@ApiOperation(value = "导出excel地址",httpMethod = "POST")
+	@RequestMapping(value = "/exportUrl", method = RequestMethod.POST)
+	public ResponseEntity exportUrl(HttpServletRequest request) {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			Map<String,Object> data = new HashMap<String,Object>();
+//			StringBuffer sb  = new StringBuffer();
+//			sb.append("http://").append(request.getServerName()).append(":");
+//			sb.append(request.getServerPort());
+//			sb.append(request.getContextPath());
+//			sb.append(request.getServletPath());
+			String url = request.getRequestURL().toString();
+			url = url.substring(0, url.indexOf("/",7));
+			String export = "/amazon-sup/amazon/export?keyWordRoot=";
+			data.put("export", export);
+			data.put("url", url+export);
+			responseEntity.success(data,"成功");
 		} catch (Exception e) {
 			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
 		}
