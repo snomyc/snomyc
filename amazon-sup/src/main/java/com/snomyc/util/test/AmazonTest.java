@@ -1,4 +1,4 @@
-package test;
+package com.snomyc.util.test;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
