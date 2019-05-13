@@ -13,20 +13,13 @@ import com.snomyc.base.mq.hello.HelloSender;
 @SpringBootTest(classes = AmazonApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RabbitMqHelloTest {
 
-    @Autowired
-    private HelloSender helloSender;
-    
+	@Autowired
+	private HelloSender helloSender;
 
-    @Test
-    public void hello() throws Exception {
-    	for (int i=0; i<1000000; i++) {
-    		helloSender.send();
+	@Test
+	public void hello() throws Exception {
+		for (int i = 1; i <= 10000; i++) {
+			helloSender.send(i);
 		}
-    }
-    
-    @Test
-	public void contextLoads() throws Exception{
-		System.out.println("hello web");
 	}
-
 }
