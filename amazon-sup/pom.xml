@@ -54,6 +54,13 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         
+        <!-- druid -->
+		<dependency>
+		  	<groupId>com.alibaba</groupId>
+		  	<artifactId>druid</artifactId>
+		  	<version>1.1.6</version>
+		</dependency>
+        
         <!-- spring aop切面 -->
         <dependency>  
             <groupId>org.springframework.boot</groupId>  
@@ -172,14 +179,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
-		<dependency>
-		    <groupId>com.rabbitmq</groupId>
-		    <artifactId>amqp-client</artifactId>
-		    <version>4.0.2</version>
-		</dependency>
-        
     </dependencies>
 
 
@@ -238,6 +237,7 @@
 			<properties>
 				<activatedProperties>test</activatedProperties>
 			</properties>
+			
 		</profile>
 		<profile>
 			<id>prod</id>
