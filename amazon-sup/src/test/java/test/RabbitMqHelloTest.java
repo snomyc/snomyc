@@ -18,7 +18,7 @@ public class RabbitMqHelloTest {
 
 	@Test
 	public void hello() throws Exception {
-		for (int i = 1; i <= 10000; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			helloSender.send(i);
 		}
 	}

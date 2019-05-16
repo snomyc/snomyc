@@ -23,6 +23,7 @@
 		<commons-collections.version>4.1</commons-collections.version>
 		<httpclient.version>4.5.2</httpclient.version>
 		<fastjson.version>1.2.8</fastjson.version>
+		<com.baidu.aip.version>3.2.0</com.baidu.aip.version>
     </properties>
 
     <dependencies>
@@ -179,6 +180,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.baidu.aip</groupId>
+			<artifactId>java-sdk</artifactId>
+			<version>${com.baidu.aip.version}</version>
+		</dependency>
     </dependencies>
 
 
@@ -237,7 +244,6 @@
 			<properties>
 				<activatedProperties>test</activatedProperties>
 			</properties>
-			
 		</profile>
 		<profile>
 			<id>prod</id>

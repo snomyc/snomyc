@@ -14,7 +14,10 @@ import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 
 /**
- * 阿里数据库连接池 Druid配置http://localhost/druid/index.html druid管理平台
+ * @author yangcan
+ * 类描述:阿里数据库连接池 Druid配置http://localhost/druid/index.html druid管理平台
+ * 创建时间:2019年5月15日 下午3:41:27
+
  */
 @Configuration
 public class DruidConfiguration {
@@ -32,7 +35,7 @@ public class DruidConfiguration {
 		// servletRegistrationBean.addInitParameter("deny", "192.168.1.100");
 		// 控制台管理用户
 		servletRegistrationBean.addInitParameter("loginUsername", "admin");
-		servletRegistrationBean.addInitParameter("loginPassword", "admin");
+		servletRegistrationBean.addInitParameter("loginPassword", "yc123456");
 		// 是否能够重置数据 禁用HTML页面上的“Reset All”功能
 		servletRegistrationBean.addInitParameter("resetEnable", "false");
 		return servletRegistrationBean;
