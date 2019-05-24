@@ -35,7 +35,7 @@ public class DruidConfiguration {
 		// servletRegistrationBean.addInitParameter("deny", "192.168.1.100");
 		// 控制台管理用户
 		servletRegistrationBean.addInitParameter("loginUsername", "admin");
-		servletRegistrationBean.addInitParameter("loginPassword", "yc123456");
+		servletRegistrationBean.addInitParameter("loginPassword", "admin");
 		// 是否能够重置数据 禁用HTML页面上的“Reset All”功能
 		servletRegistrationBean.addInitParameter("resetEnable", "false");
 		return servletRegistrationBean;
