@@ -2,17 +2,45 @@ package com.snomyc.task;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.support.CorrelationData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.alibaba.fastjson.JSONObject;
+import com.snomyc.base.mq.RabbitConfig;
+import com.snomyc.base.mq.producer.BaseRabbitSend;
+import com.snomyc.base.mq.producer.BaseRabbitTemplate;
+import com.snomyc.sys.bean.User;
+
+
 @Component
 public class SchedulerTask {
+	
+	private Logger logger = LoggerFactory.getLogger("AmazonRabbitmq");
+	
+//	@Autowired
+//    private AmqpTemplate rabbitTemplate;
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+	
+	@Autowired
+	private BaseRabbitTemplate rabbitMqConfig;
+	
 	private int count=0;
 
     @Scheduled(cron="*/6 * * * * ?")
     private void process(){
-        System.out.println("this is scheduler task runing  "+(count++));
+    	User user = new User();
+    	user.setUserName("你是大傻逼! 加"+(count++));
+    	logger.error(JSONObject.toJSONString(user));
+        BaseRabbitSend.convertAndTopicSend(RabbitConfig.exchange_amazon, RabbitConfig.topic_amazon, user, rabbitMqConfig);
     }
     
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -31,5 +59,9 @@ public class SchedulerTask {
     @Scheduled(fixedRate = 6000)
     public void reportCurrentTime() {
         System.out.println("现在时间：" + dateFormat.format(new Date()));
+        User user = new User();
+    	user.setUserName("你是大傻逼! 加加"+(count++));
+    	logger.error(JSONObject.toJSONString(user));
+        this.rabbitTemplate.convertAndSend(RabbitConfig.exchange_amazon, RabbitConfig.topic_amazon, user);
     }
 }

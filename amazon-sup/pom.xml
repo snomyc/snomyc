@@ -186,6 +186,8 @@
 			<artifactId>java-sdk</artifactId>
 			<version>${com.baidu.aip.version}</version>
 		</dependency>
+		
+		<!-- logback日志框架 spring-boot自带logback包，所以不用引入 -->
     </dependencies>
 
 

@@ -11,19 +11,19 @@ import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.snomyc.util.excel.format.ExcelFormat;
 
 public class ExcelUtilHSSF {
 	
-		private static Logger log = LogManager.getLogger(ExcelUtilHSSF.class);
+		private Logger log = LoggerFactory.getLogger("AmazonSystem");
 		private HSSFWorkbook wb;
 		private HSSFSheet sheet;
 		private HSSFRow row;
