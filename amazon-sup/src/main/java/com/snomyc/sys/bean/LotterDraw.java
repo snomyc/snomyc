@@ -5,17 +5,17 @@ import javax.persistence.Entity;
 import com.snomyc.base.domain.BaseEntity;
 
 @Entity
-public class User extends BaseEntity{
+public class LotterDraw extends BaseEntity{
     
 	private static final long serialVersionUID = 1L;
 	
 	@Column(unique = true,nullable = false,length=50)
-    private String userName;
+    private String userName; //用户名
 	
 	@Column(nullable = false, unique = true,length=50)
-    private String password;
+    private String mobile; //手机号
 	
-    private int age;
+    private int num;//序号
 
 	public String getUserName() {
 		return userName;
@@ -25,19 +25,20 @@ public class User extends BaseEntity{
 		this.userName = userName;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMobile() {
+		return mobile;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
-	public int getAge() {
-		return age;
+	public int getNum() {
+		return num;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setNum(int num) {
+		this.num = num;
 	}
+	
 }

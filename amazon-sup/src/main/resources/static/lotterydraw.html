@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/lotterydraw/lotterydraw.css" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<title>抽奖</title>
+</head>
+<body>
+
+<div class="box">
+	<p class="Title">随机刷新数据</p>
+	<ul class="prizeList">
+		<!-- {%lcmx_gbook_list set="列表名:gbook,显示数目:20,标题长度:20,类别:0,栏目:1"%}
+		{%foreach from=$gbook item=list name=foo%}
+		<li>{%$smarty.foreach.foo.iteration%}、<span>{%$list.lc_name%}</span><label>{%$list.tel%}</label></li>
+		{%/foreach%} -->
+	</ul>
+	<div class="submit" data-id="0">开 始</div>
+</div>
+
+<script type="text/javascript">
+//从一个给定的数组arr中,随机返回num个不重复项
+		function getArrayItems(arr, num) {
+		    //新建一个数组,将传入的数组复制过来,用于运算,而不要直接操作传入的数组;
+		    var temp_array = new Array();
+		    for (var index in arr) {
+		        temp_array.push(arr[index]);
+		    }
+		    //取出的数值项,保存在此数组
+		    var return_array = new Array();
+		    for (var i = 0; i<num; i++) {
+		        //判断如果数组还有可以取出的元素,以防下标越界
+		        if (temp_array.length>0) {
+		            //在数组中产生一个随机索引
+		            var arrIndex = Math.floor(Math.random()*temp_array.length);
+		            //将此随机索引的对应的数组元素值复制出来
+		            return_array[i] = temp_array[arrIndex];
+		            //然后删掉此索引的数组元素,这时候temp_array变为新的数组
+		            temp_array.splice(arrIndex, 1);
+		        } else {
+		            //数组中数据项取完后,退出循环,比如数组本来只有10项,但要求取出20项.
+		            break;
+		        }
+		    }
+		    return return_array;
+		}
+	var interval;
+	$(".submit").click(function(){
+		var status = $(this).data("id");
+		var ints ;
+		if(status == 0){
+			
+			$.post("/api/common/lotteryDraw",{},function(data){
+				if(data){
+	      			if(data.code=="999"){
+	        			function times(){
+							var ArrList=data.data;
+							var res = getArrayItems(ArrList,20);
+							str='';
+							for(o in res){
+								num = parseInt(o)+1;
+								str+='<li data-id="'+res[o].num+'">'+num+'、<span>'+res[o].userName+'</span><label>'+res[o].mobile+'</label></li>';
+							}
+							$(".prizeList").html(str);
+						}
+						interval = setInterval(times,0);
+						$(".submit").data("id","1");
+						$(".submit").text("停止");
+		            }
+		        }else{  
+		            alert('Ajax error!');
+		        }
+		    },'json');
+		}else{
+			clearInterval(interval);
+			$(".submit").data("id","0");
+			$(".submit").text("开始");
+		}
+	})
+
+</script>
+
+</body>
+</html>
