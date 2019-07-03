@@ -3,14 +3,17 @@ package com.snomyc.api.user.request;
 
 import com.snomyc.base.domain.BaseRequest;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class UserEditRequest extends BaseRequest {
 	private static final long serialVersionUID = 1L;
 
 	@ApiModelProperty(name = "id", value = "设备号", required = true)
+	@NotBlank
 	private String id; //user id
 	
 	@ApiModelProperty(name = "userName", value = "用户名", required = true)
+	@NotBlank
 	private String userName;
 	
 	@ApiModelProperty(name = "password", value = "密码", required = true)

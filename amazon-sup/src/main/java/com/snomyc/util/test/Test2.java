@@ -1,11 +1,16 @@
 package com.snomyc.util.test;
 
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import com.alibaba.fastjson.JSON;
 public class Test2 {
@@ -35,16 +40,28 @@ public class Test2 {
 	    
       //String url = "http://localhost:8080/sharingschool/wxapi/user/appUserlogin";
 	  //String url = "https://t.questyes.com/wxapi/user/getLoginType";
-	  String url = "https://t.sharingschool.com/wxapi/user/getLoginType";
-      Map<String, Object> map = new HashMap<String, Object>();
-	  map.put("validateTime", "2018-05-30");
-      HttpHeaders headers = new HttpHeaders();
-      headers.setContentType(MediaType.valueOf("application/json;UTF-8"));
-      HttpEntity<String> strEntity = new HttpEntity<String>(JSON.toJSONString(map),headers);
-      RestTemplate restTemplate = new RestTemplate();
-      
-      String result = restTemplate.postForObject(url,strEntity,String.class);
-      System.out.println(result);
+//	  String url = "https://t.sharingschool.com/wxapi/user/getLoginType";
+//      Map<String, Object> map = new HashMap<String, Object>();
+//	  map.put("validateTime", "2018-05-30");
+//      HttpHeaders headers = new HttpHeaders();
+//      headers.setContentType(MediaType.valueOf("application/json;UTF-8"));
+//      HttpEntity<String> strEntity = new HttpEntity<String>(JSON.toJSONString(map),headers);
+//      RestTemplate restTemplate = new RestTemplate();
+//
+//      String result = restTemplate.postForObject(url,strEntity,String.class);
+//      System.out.println(result);
+
+      String url = "https://xt.sharingschool.com/sz/api/common/common/uploadForm";
+      String filePath = "F:\\update.zip";
+
+      RestTemplate rest = new RestTemplate();
+      FileSystemResource resource = new FileSystemResource(new File(filePath));
+      MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
+      param.add("files", resource);
+      param.add("accessToken", "92D217DC1DD345A4B50D3D09A0C99C70");
+
+      String string = rest.postForObject(url, param, String.class);
+      System.out.println(string);
 	    
 //        
 //        StringBuilder selSql = new StringBuilder();

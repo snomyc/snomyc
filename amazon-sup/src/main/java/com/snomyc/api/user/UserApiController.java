@@ -24,7 +24,6 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import springfox.documentation.annotations.ApiIgnore;
 @Api(value = "用户接口", tags = "用户接口")
-@ApiIgnore
 @RestController
 @RequestMapping("/api/user")
 public class UserApiController {
@@ -73,12 +72,8 @@ public class UserApiController {
 	public ResponseEntity edit(@RequestBody UserEditRequest request) {
 		ResponseEntity responseEntity = new ResponseEntity();
 		try {
-			User user = new User();
-			user.setId(request.getId());
-			user.setUserName(request.getUserName());
-			user.setPassword(request.getPassword());
-			user.setAge(request.getAge());
-			userService.save(user);
+            userService.testTranSactional(request);
+			//userService.save(user);
 			responseEntity.success();
 		} catch (Exception e) {
 			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");

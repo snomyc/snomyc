@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @param <T>
  * @param <ID>
  */
-@Transactional
 public abstract class BaseServiceImpl<T, ID extends Serializable> implements BaseService<T, ID> {
 
     public abstract PagingAndSortingRepository<T, ID> getDao();
