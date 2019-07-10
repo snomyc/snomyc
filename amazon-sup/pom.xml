@@ -92,7 +92,19 @@
 			<version>2.4.0</version>
 		</dependency>
 		<!-- swagger2 end -->
-		
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.3</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- commons start  -->
 		<!-- 文件上传依赖 -->
 		<dependency>
@@ -189,16 +201,6 @@
 		
 		<!-- logback日志框架 spring-boot自带logback包，所以不用引入 -->
 
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
     </dependencies>
 
 
