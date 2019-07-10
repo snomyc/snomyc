@@ -35,7 +35,7 @@ public class SchedulerTask {
 	
 	private int count=0;
 
-    @Scheduled(cron="*/6 * * * * ?")
+    @Scheduled(cron="0 */6 * * * ?")
     private void process(){
     	User user = new User();
     	user.setUserName("你是大傻逼! 加"+(count++));
@@ -56,7 +56,7 @@ public class SchedulerTask {
      * 创建人:yangcan
     
      */
-    @Scheduled(fixedRate = 6000)
+    @Scheduled(fixedRate = 60000)
     public void reportCurrentTime() {
         System.out.println("现在时间：" + dateFormat.format(new Date()));
         User user = new User();

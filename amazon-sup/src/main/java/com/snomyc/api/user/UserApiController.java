@@ -1,7 +1,11 @@
 package com.snomyc.api.user;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +31,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 @RequestMapping("/api/user")
 public class UserApiController {
+	private Logger logger = LoggerFactory.getLogger("AmazonSystem");
 	
 	@Autowired
 	private UserService userService;
@@ -43,8 +48,28 @@ public class UserApiController {
 		ResponseEntity responseEntity = new ResponseEntity();
 		try {
 			List<User> users = userService.findAll();
+			List<String> userNames = new ArrayList<>();
+			for (User user:users) {
+				userNames.add(user.getUserName());
+			}
+			userService.updateAge(20,userNames);
 			responseEntity.success(users, "调用成功");
 		} catch (Exception e) {
+			logger.error(e.getMessage());
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "查询用户",httpMethod = "POST",notes = "查询用户")
+	@RequestMapping(value = "/selectOne", method = RequestMethod.POST)
+	public ResponseEntity selectOne(@ApiParam(required = true, name = "userName", value = "用户名") @RequestParam(name = "userName",required = true) String userName) {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			List<Map<String,Object>> users = userService.findByUserName(userName);
+			responseEntity.success(users, "调用成功");
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
 		}
 		return responseEntity;

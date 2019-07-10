@@ -1,6 +1,7 @@
 package com.snomyc.sys.service.impl;
 
 import com.snomyc.api.user.request.UserEditRequest;
+import com.snomyc.sys.dao.UserQueryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
@@ -12,12 +13,15 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User, String> implements UserService{
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserQueryDao userQueryDao;
 
     @Override
     public User findUserById(String id) {
@@ -50,6 +54,17 @@ public class UserServiceImpl extends BaseServiceImpl<User, String> implements Us
         //Transactional注解规则，如果在主方法头上设置规则则主方法里的所有子方法设置的Transactional规则失效
         //在方法上加Transactional规则，在类头上也加Transactional规则，则以方法上的为准
         this.testSave(request);
+    }
+
+    @Override
+    @Transactional
+    public void updateAge(int age, List<String> userNames) {
+        userDao.updateAge(age,userNames);
+    }
+
+    @Override
+    public List<Map<String, Object>> findByUserName(String userName) {
+        return userQueryDao.findByUserName(userName);
     }
 
     @Override
